@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CustomTextField.h"
 @interface ViewController : UIViewController <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet CustomTextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet CustomTextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)loginButtonPressed:(id)sender;
