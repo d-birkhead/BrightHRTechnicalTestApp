@@ -43,19 +43,9 @@
     
     NSURLSessionDataTask *postCredentials = [_session dataTaskWithRequest:request];
     [postCredentials resume];
-}
-
-- ( NSURLSession * )getURLSession
-{
-    static NSURLSession *session = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once( &onceToken,
-                  ^{
-                      NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-                      session = [NSURLSession sessionWithConfiguration:configuration];
-                  } );
     
-    return session;
+    NSLog(@"login sent");
+
 }
 
 #pragma mark - datasession delegate methods
@@ -63,6 +53,11 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler{
     NSLog(@"Response %@", response);
+    
+    NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+    _statusCheckInt = statusCode;
+    NSDictionary *statusCodeDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:statusCode] forKey:@"statuscode"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginresponse" object:self userInfo:statusCodeDict];
     receivedData=nil; receivedData=[[NSMutableData alloc] init];
     [receivedData setLength:0];
     // Handler allows us to receive and parse responses from the server
@@ -74,13 +69,17 @@
     // Parse the JSON that came in into an NSDictionary
     NSError * err = nil;
     NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
-    
-    if (!err){ // if no error occurred, parse the array of objects as normal
+    NSLog(@"data: %@", data);
+
+    if ((!err)&&(_statusCheckInt == 200)){ // if no error occurred, parse the array of objects as normal
         // Parse the JSON dictionary 'jsonDict' here
         
         NSLog(@"JSON Dict: %@", jsonDict);
+        // Send notification of successful login
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"logindata" object:self userInfo:jsonDict];
     }
-    else{ // an error occurred so we need to let the user know
+    else{
+        // an error occurred so we need to let the user know
         NSLog(@"error: %@", err);
     }
 }

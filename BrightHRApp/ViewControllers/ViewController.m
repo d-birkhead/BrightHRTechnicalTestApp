@@ -16,13 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _connectionManager = [[ConnectionManager alloc] init];
+
     // set textfield delegates
     _usernameTextField.delegate = self;
     _passwordTextField.delegate = self;
-
     // disable login button
     [self loginEnableCheck];
-    [self.connectionManager = [ConnectionManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +36,21 @@
     NSString *password = _passwordTextField.text;
 
     NSLog(@"User: %@, Pass: %@", username, password);
-    [self.connectionManager connectAndPostLogin:username :password];
+    
+    [_connectionManager connectAndPostLogin:username :password];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    // listen for notifications from NSURLSessionDelegate
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(displayMessage:)
+                                                  name:@"loginresponse"
+                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(displaySuccessMessage:)
+                                                 name:@"logindata"
+                                               object:nil];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -71,6 +86,57 @@
         [_loginButton setBackgroundColor: [UIColor colorWithRed:0.68 green:0.05 blue:0.69 alpha:1.0]];
         [_loginButton setTitleColor: [UIColor colorWithRed:0.75 green:0.73 blue:0.76 alpha:1.0] forState: UIControlStateDisabled];
 
+    }
+}
+
+- (void)displayMessage:(NSNotification *)notificationResponse{
+    
+  NSNumber *statusCode = [[notificationResponse userInfo] valueForKey:@"statuscode"];
+    NSLog(@"Received Notification - status code: %@", statusCode);
+    
+    NSString *status = [NSString stringWithFormat:@"%@", statusCode];
+    // if status contains successful login return code 200
+    if ([status containsString: @"200"]) {
+        NSLog(@"200 response received");
+        return;
+    }
+    // if status contains invalid username or password return code 403
+    if ([status containsString: @"403"]) {
+        NSString *invalidUserPassString = @"Please enter a valid username or password";
+        [self displayNotification: invalidUserPassString];
+        return;
+    }
+    // if status contains neither a successful 200 or a wrong credential code 403
+    if ((![status containsString: @"200"])||(![status containsString: @"403"])) {
+        NSString *unknownErrorString = @"Sorry, something has gone wrong. Please try again.";
+        [self displayNotification: unknownErrorString];
+    }
+}
+
+- (void)displayNotification:(NSString *)message{
+    
+    UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert"
+                                                                  message:message
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* OK = [UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action)
+    {
+    }];
+    
+    [alert addAction:OK];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)displaySuccessMessage:(NSNotification *)notificationData{
+
+    NSLog(@"NotficationData: %@", notificationData);
+    
+    if ([notificationData.userInfo objectForKey:@"userTimeZoneName"]){
+            NSString *timezoneString = [NSString stringWithFormat: @"Welcome to %@", [notificationData.userInfo objectForKey:@"userTimeZoneName"]];
+            [self displayNotification:timezoneString];
     }
 }
 

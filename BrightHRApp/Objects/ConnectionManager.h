@@ -12,6 +12,8 @@
 @property NSURLSessionConfiguration *config;
 @property NSURLSession *session;
 
--(void)connectAndPostLogin:(NSString*)user :(NSString*)pass;
+@property NSInteger statusCheckInt;
+
+- (void)connectAndPostLogin:(NSString*)user :(NSString*)pass;
 
 @end
