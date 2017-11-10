@@ -62,10 +62,15 @@
     // if username and password are entered enable login button
     if ((_usernameTextField.text.length > 1)&&(_passwordTextField.text.length > 1)) {
         _loginButton.enabled = YES;
+        _loginButton.backgroundColor = [UIColor colorWithRed:1.00 green:0.10 blue:0.64 alpha:1.0];
+        [_loginButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
     }
     else{
         // disable login button
         _loginButton.enabled = NO;
+        [_loginButton setBackgroundColor: [UIColor colorWithRed:0.68 green:0.05 blue:0.69 alpha:1.0]];
+        [_loginButton setTitleColor: [UIColor colorWithRed:0.75 green:0.73 blue:0.76 alpha:1.0] forState: UIControlStateDisabled];
+
     }
 }
 

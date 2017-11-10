@@ -25,7 +25,7 @@
 // override drawing method to add custom behaviour / attributes
 - (void) drawPlaceholderInRect:(CGRect)rect
 {
-    [[UIColor whiteColor] setFill];
+    [[UIColor colorWithWhite: 1.0 alpha: 0.5] setFill];
     [self setTextColor: [UIColor whiteColor]];
     [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
     
