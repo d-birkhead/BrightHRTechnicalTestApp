@@ -22,9 +22,11 @@
     
     return self;
 }
+// override drawing method to add custom behaviour / attributes
 - (void) drawPlaceholderInRect:(CGRect)rect
 {
     [[UIColor whiteColor] setFill];
+    [self setTextColor: [UIColor whiteColor]];
     [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
     
     CALayer *border = [CALayer layer];
@@ -32,6 +34,7 @@
     border.borderColor = [UIColor whiteColor].CGColor;
     border.borderWidth = borderWidth;
     border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, self.frame.size.height);
+    
     // apply border to textfield
     [self.layer addSublayer:border];
     self.layer.masksToBounds = YES;

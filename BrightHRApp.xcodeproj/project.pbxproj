@@ -16,6 +16,7 @@
 		61C88EB51FB48FE10062F2CC /* BrightHRAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C88EB41FB48FE10062F2CC /* BrightHRAppTests.m */; };
 		61C88EC21FB4DA160062F2CC /* brighthr-headerlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 61C88EC41FB4DA160062F2CC /* brighthr-headerlogo.png */; };
 		61C88ECE1FB51BE20062F2CC /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C88ECD1FB51BE20062F2CC /* CustomTextField.m */; };
+		61C88ED11FB5272D0062F2CC /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C88ED01FB5272D0062F2CC /* ConnectionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		61C88EC51FB4DA210062F2CC /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/brighthr-headerlogo.png"; sourceTree = "<group>"; };
 		61C88ECC1FB51BB50062F2CC /* CustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
 		61C88ECD1FB51BE20062F2CC /* CustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
+		61C88ECF1FB5270B0062F2CC /* ConnectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		61C88ED01FB5272D0062F2CC /* ConnectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 			children = (
 				61C88ECC1FB51BB50062F2CC /* CustomTextField.h */,
 				61C88ECD1FB51BE20062F2CC /* CustomTextField.m */,
+				61C88ECF1FB5270B0062F2CC /* ConnectionManager.h */,
+				61C88ED01FB5272D0062F2CC /* ConnectionManager.m */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			files = (
 				61C88ECE1FB51BE20062F2CC /* CustomTextField.m in Sources */,
 				61C88EA01FB48FE10062F2CC /* ViewController.m in Sources */,
+				61C88ED11FB5272D0062F2CC /* ConnectionManager.m in Sources */,
 				61C88EAB1FB48FE10062F2CC /* main.m in Sources */,
 				61C88E9D1FB48FE10062F2CC /* AppDelegate.m in Sources */,
 			);

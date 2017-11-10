@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTextField.h"
-@interface ViewController : UIViewController <UITextFieldDelegate>
+#import "ConnectionManager.h"
+
+@interface ViewController : UIViewController <UITextFieldDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet CustomTextField *passwordTextField;
+
+// if button was used more than once, a custom class or category with predefined attributes may be a better option than using UIButton directly
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+@property (strong, nonatomic) ConnectionManager *connectionManager;
 
 - (IBAction)loginButtonPressed:(id)sender;
 
