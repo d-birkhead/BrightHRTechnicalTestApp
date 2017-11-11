@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet CustomTextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet CustomTextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 // if button was used more than once, a custom class or category with predefined attributes may be a better option than using UIButton directly
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;

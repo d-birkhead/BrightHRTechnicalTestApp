@@ -32,9 +32,15 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
+    // remove text from login button
+    [_loginButton setTitle: @"" forState:UIControlStateNormal];
+
+    // start activity indicator
+    [_activityIndicator startAnimating];
+    
     NSString *username = _usernameTextField.text;
     NSString *password = _passwordTextField.text;
-
+    
     NSLog(@"User: %@, Pass: %@", username, password);
     
     [_connectionManager connectAndPostLogin:username :password];
@@ -80,18 +86,17 @@
         _loginButton.backgroundColor = [UIColor colorWithRed:1.00 green:0.10 blue:0.64 alpha:1.0];
         [_loginButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
     }
-    else{
+    if ((_usernameTextField.text.length < 1)&&(_passwordTextField.text.length < 1)) {
         // disable login button
         _loginButton.enabled = NO;
         [_loginButton setBackgroundColor: [UIColor colorWithRed:0.68 green:0.05 blue:0.69 alpha:1.0]];
         [_loginButton setTitleColor: [UIColor colorWithRed:0.75 green:0.73 blue:0.76 alpha:1.0] forState: UIControlStateDisabled];
-
     }
 }
 
 - (void)displayMessage:(NSNotification *)notificationResponse{
     
-  NSNumber *statusCode = [[notificationResponse userInfo] valueForKey:@"statuscode"];
+    NSNumber *statusCode = [[notificationResponse userInfo] valueForKey:@"statuscode"];
     NSLog(@"Received Notification - status code: %@", statusCode);
     
     NSString *status = [NSString stringWithFormat:@"%@", statusCode];
@@ -114,7 +119,7 @@
 }
 
 - (void)displayNotification:(NSString *)message{
-    
+    // set up notification message
     UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert"
                                                                   message:message
                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -122,7 +127,12 @@
     UIAlertAction* OK = [UIAlertAction actionWithTitle:@"OK"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction * action)
+                         
     {
+        // stop activity indicator
+        [_activityIndicator stopAnimating];
+        // replace text from login button
+        [_loginButton setTitle: @"Login" forState:UIControlStateNormal];
     }];
     
     [alert addAction:OK];

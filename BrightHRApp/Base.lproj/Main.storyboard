@@ -44,10 +44,10 @@
                                 <rect key="frame" x="99" y="56" width="170" height="41"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-hJ-U8N">
-                                <rect key="frame" x="127" y="255" width="115" height="35"/>
+                                <rect key="frame" x="127" y="254" width="115" height="37"/>
                                 <color key="backgroundColor" red="0.8852575421333313" green="0.17093446850776672" blue="0.59571856260299683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="YaL-hJ-U8N" secondAttribute="height" multiplier="14:3" constant="-48.333333333333343" id="P67-m4-UVH"/>
+                                    <constraint firstAttribute="width" secondItem="YaL-hJ-U8N" secondAttribute="height" multiplier="14:3" constant="-57.666666666666686" id="P67-m4-UVH"/>
                                 </constraints>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,26 +56,33 @@
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GXI-ev-gYB"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OgS-Gj-XnO">
+                                <rect key="frame" x="166" y="254" width="37" height="37"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.14179599285125732" green="0.51522582769393921" blue="0.98604172468185425" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="U2f-Kr-ChU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2eP-v2-11t"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YaL-hJ-U8N" secondAttribute="bottom" constant="377" id="Bys-bI-bUj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YaL-hJ-U8N" secondAttribute="bottom" constant="376" id="Bys-bI-bUj"/>
+                            <constraint firstItem="OgS-Gj-XnO" firstAttribute="centerX" secondItem="YaL-hJ-U8N" secondAttribute="centerX" id="GdV-Tl-177"/>
                             <constraint firstItem="Hbf-Pz-obh" firstAttribute="centerX" secondItem="YaL-hJ-U8N" secondAttribute="centerX" id="GsF-Qo-alz"/>
                             <constraint firstItem="U2f-Kr-ChU" firstAttribute="trailing" secondItem="Hbf-Pz-obh" secondAttribute="trailing" id="JoM-mv-Xd0"/>
                             <constraint firstItem="U2f-Kr-ChU" firstAttribute="leading" secondItem="Hbf-Pz-obh" secondAttribute="leading" id="PCL-43-32B"/>
                             <constraint firstItem="YaL-hJ-U8N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="127" id="QFT-5y-NFH"/>
                             <constraint firstItem="BeO-jk-arF" firstAttribute="centerX" secondItem="U2f-Kr-ChU" secondAttribute="centerX" id="X78-91-Y1b"/>
                             <constraint firstItem="Hbf-Pz-obh" firstAttribute="top" secondItem="U2f-Kr-ChU" secondAttribute="bottom" constant="7" id="Zbm-Co-okk"/>
+                            <constraint firstItem="OgS-Gj-XnO" firstAttribute="centerY" secondItem="YaL-hJ-U8N" secondAttribute="centerY" id="aff-OS-utC"/>
                             <constraint firstItem="BeO-jk-arF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="99" id="dKM-Zw-hgk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U2f-Kr-ChU" secondAttribute="trailing" constant="22" id="eGa-5R-VKp"/>
-                            <constraint firstItem="YaL-hJ-U8N" firstAttribute="top" secondItem="Hbf-Pz-obh" secondAttribute="bottom" constant="30" id="ex9-ZO-pi5"/>
+                            <constraint firstItem="YaL-hJ-U8N" firstAttribute="top" secondItem="Hbf-Pz-obh" secondAttribute="bottom" constant="29" id="ex9-ZO-pi5"/>
                             <constraint firstItem="BeO-jk-arF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="mYt-sW-zBt"/>
                             <constraint firstItem="U2f-Kr-ChU" firstAttribute="top" secondItem="BeO-jk-arF" secondAttribute="bottom" constant="41" id="xDV-4Y-F4S"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="OgS-Gj-XnO" id="vTE-bm-Xqm"/>
                         <outlet property="loginButton" destination="YaL-hJ-U8N" id="f1A-cs-NIA"/>
                         <outlet property="passwordTextField" destination="Hbf-Pz-obh" id="RRB-PS-Kkh"/>
                         <outlet property="usernameTextField" destination="U2f-Kr-ChU" id="4WD-z3-qcZ"/>
