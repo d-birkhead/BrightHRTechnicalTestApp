@@ -32,6 +32,9 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
+    // if user is still in active textfield, end editing
+    [self.view endEditing:YES];
+    
     // remove text from login button
     [_loginButton setTitle: @"" forState:UIControlStateNormal];
 
